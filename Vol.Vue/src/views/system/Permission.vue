@@ -107,7 +107,33 @@ export default {
         return this.$message.error("请选择角色!");
       }
       let userPermissions = [];
-      this.data.forEach(x => {
+      // this.data.forEach(x => {
+      //   let checkedPermission = x.actions.filter(f => {
+      //     return f.checked;
+      //   });
+      //   if (checkedPermission.length > 0) {
+      //     let actions = checkedPermission.map(m => {
+      //       return { text: m.text, value: m.value };
+      //     });
+      //     userPermissions.push({
+      //       id: x.id,
+      //       actions: actions
+      //     });
+      //   }
+      // });
+      //  let roleId = this.roles[this.selectIndex].id;
+      // this.http
+      //   .post(
+      //     "/api/role/SavePermission?roleId=" + this.selectIndex, //roleId,
+      //     userPermissions,
+      //     true
+      //   )
+      //   .then(result => {
+      //     this.$Message[result.status ? "info" : "error"](result.message);
+      //   });
+    },
+      getChildrenChecked(){
+              this.data.forEach(x => {
         let checkedPermission = x.actions.filter(f => {
           return f.checked;
         });
@@ -121,17 +147,7 @@ export default {
           });
         }
       });
-      //  let roleId = this.roles[this.selectIndex].id;
-      this.http
-        .post(
-          "/api/role/SavePermission?roleId=" + this.selectIndex, //roleId,
-          userPermissions,
-          true
-        )
-        .then(result => {
-          this.$Message[result.status ? "info" : "error"](result.message);
-        });
-    },
+      },
     getTree(id, data) {
       this.data.forEach(x => {
         if (x.pid == id) {
